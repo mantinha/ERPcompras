@@ -3,34 +3,39 @@ package br.fsa.compras.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Departamento {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
 	
-	@OneToMany
-	@JoinColumn(name = "departamento_id")
+	@ManyToMany
+	@JoinTable(name = "departamento_cargo",
+		joinColumns = @JoinColumn(name = "departamento_id"),
+			inverseJoinColumns = @JoinColumn(name = "cargo_id"))
 	private Set<Cargo> cargo = new HashSet<>();
+	
+	@OneToOne(cascade = CascadeType.ALL)	
+	private Funcionario funcionario;
 
 	public Departamento(String nome) {
-		super();
 		this.nome = nome;
 	}
 
 	public Departamento() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -55,6 +60,14 @@ public class Departamento {
 
 	public void setCargo(Set<Cargo> cargo) {
 		this.cargo = cargo;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	@Override

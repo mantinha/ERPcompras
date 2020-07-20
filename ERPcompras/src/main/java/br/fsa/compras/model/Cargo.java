@@ -1,8 +1,13 @@
 package br.fsa.compras.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -10,22 +15,22 @@ import javax.persistence.GenerationType;
 public class Cargo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
 	
-	@ManyToOne
-	private Departamento departamento;
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "cargo")
+	private Set<Departamento> departamento = new HashSet<>();
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Funcionario funcionario;
 	
 	public Cargo(String nome) {
-		super();
 		this.nome = nome;
 	}
 
 	public Cargo() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -44,12 +49,20 @@ public class Cargo {
 		this.nome = nome;
 	}
 
-	public Departamento getDepartamento() {
+	public Set<Departamento> getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(Set<Departamento> departamento) {
 		this.departamento = departamento;
+	}	
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	@Override
@@ -79,7 +92,7 @@ public class Cargo {
 
 	@Override
 	public String toString() {
-		return "Cargo [id=" + id + ", nome=" + nome + ", departamento=" + departamento + "]";
+		return "Cargo [id=" + id + ", nome=" + nome + "]";
 	}
 	
 }
