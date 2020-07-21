@@ -31,8 +31,8 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
+//		departamentoRepository.saveAll(getDepartamentos());
 		funcionarioRepository.saveAll(getFuncionarios());
-		departamentoRepository.saveAll(getDepartamentos());
 		
 		System.out.println("Cargos registrados: " + cargoRepository.count());
 		System.out.println("Departamentos registrados: " + departamentoRepository.count());
@@ -92,37 +92,33 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		return cargos;
 	}
 	
-	private List<Departamento> getDepartamentos() {
-		
-		List<Departamento> departamentos = new ArrayList<>(2);
-		
-		/*
-		 * Relationships ManyToMany {Departamento} --> {Cargo}
-		 */		
-		allDepartamentos().get(0).getCargo().add(allCargos().get(0));
-		allDepartamentos().get(0).getCargo().add(allCargos().get(1));
-		allDepartamentos().get(0).getCargo().add(allCargos().get(2));			
-		allDepartamentos().get(1).getCargo().add(allCargos().get(0));
-		allDepartamentos().get(1).getCargo().add(allCargos().get(1));
-		allDepartamentos().get(1).getCargo().add(allCargos().get(2));
-		
-		/*
-		 * Add Data into Table
-		 */
-		departamentos.add(allDepartamentos().get(0));
-		departamentos.add(allDepartamentos().get(1));
-		
-		return departamentos;
-	}
+//	private List<Departamento> getDepartamentos() {
+//		
+//		List<Departamento> departamentos = new ArrayList<>(2);
+//		
+//		/*
+//		 * Relationships ManyToMany {Departamento} --> {Cargo}
+//		 */		
+//		allDepartamentos().get(0).getCargo().add(allCargos().get(0));
+//		allDepartamentos().get(0).getCargo().add(allCargos().get(1));
+//		allDepartamentos().get(0).getCargo().add(allCargos().get(2));			
+//		allDepartamentos().get(1).getCargo().add(allCargos().get(0));
+//		allDepartamentos().get(1).getCargo().add(allCargos().get(1));
+//		allDepartamentos().get(1).getCargo().add(allCargos().get(2));
+//		
+//		departamentos.add(allDepartamentos().get(0));
+//		departamentos.add(allDepartamentos().get(1));
+//		
+//		return departamentos;
+//	}
 	
+	/*
+	 * Feed Table Funcionario
+	 */
 	private List<Funcionario> getFuncionarios() {
 		
 		List<Funcionario> funcionarios = new ArrayList<>(5);
 		
-		/*
-		 * Input Data
-		 * Relationships
-		 */
 		Funcionario adriano = new Funcionario();
 		adriano.setNome("Adriano Macedo Santana");
 		adriano.setEmail("adriano.santana@ads.fsa.br");

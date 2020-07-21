@@ -60,6 +60,7 @@ public class Funcionario {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
+		cargo.setFuncionario(this);
 	}
 
 	public Departamento getDepartamento() {
@@ -68,6 +69,7 @@ public class Funcionario {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+		departamento.setFuncionario(this);
 	}
 
 	@Override

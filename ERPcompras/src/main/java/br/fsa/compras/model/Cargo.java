@@ -27,6 +27,12 @@ public class Cargo {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Funcionario funcionario;
 	
+	public Cargo(String nome, Set<Departamento> departamento, Funcionario funcionario) {
+		this.nome = nome;
+		this.departamento = departamento;
+		this.funcionario = funcionario;
+	}
+
 	public Cargo(String nome) {
 		this.nome = nome;
 	}

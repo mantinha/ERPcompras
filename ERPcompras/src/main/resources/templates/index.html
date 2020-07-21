@@ -1,5 +1,5 @@
-<!DOCTYPE>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8"/>
 	<title>ERP compras</title>
@@ -10,12 +10,35 @@
 		<tr>
 			<th>ID</th>
 			<th>NOME</th>
+			<th>EMAIL</th>
 		</tr>
 		<tr th:each="funcionario : ${funcionarios}">
-			<td th:text="${funcionario.id}">00</td>
-			<td th:text="${funcionario.nome}">vazio</td>
-			<td th:text="${funcionario.email}">vazio</td>
+			<td th:text="${funcionario.matricula}">loading..</td>
+			<td th:text="${funcionario.nome}">loading..</td>
+			<td th:text="${funcionario.email}">loading..</td>
+		</tr>		
+	</table>
+	<h1>Cargos</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NOME</th>
 		</tr>
+		<tr th:each="cargo : ${cargos}">
+			<td th:text="${cargo.id}">loading..</td>
+			<td th:text="${cargo.nome}">loading..</td>
+		</tr>		
+	</table>
+	<h1>Departamentos</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NOME</th>
+		</tr>
+		<tr th:each="departamento : ${departamentos}">
+			<td th:text="${departamento.id}">loading..</td>
+			<td th:text="${departamento.nome}">loading..</td>
+		</tr>		
 	</table>
 </body>
 </html>

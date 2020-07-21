@@ -32,6 +32,12 @@ public class Departamento {
 	@OneToOne(cascade = CascadeType.ALL)	
 	private Funcionario funcionario;
 
+	public Departamento(String nome, Set<Cargo> cargo, Funcionario funcionario) {
+		this.nome = nome;
+		this.cargo = cargo;
+		this.funcionario = funcionario;
+	}
+
 	public Departamento(String nome) {
 		this.nome = nome;
 	}
