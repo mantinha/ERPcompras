@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -20,7 +21,7 @@ public class Cargo {
 	
 	private String nome;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "cargo")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "cargo")
 	private Set<Departamento> departamento = new HashSet<>();
 	
 	@OneToOne(cascade = CascadeType.ALL)

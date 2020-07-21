@@ -1,10 +1,21 @@
 <!DOCTYPE>
-<html lang="eng xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8"/>
 	<title>ERP compras</title>
 </head>
 <body>
-	<h1>Teste</h1>
+	<h1>Funcionários</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NOME</th>
+		</tr>
+		<tr th:each="funcionario : ${funcionarios}">
+			<td th:text="${funcionario.id}">00</td>
+			<td th:text="${funcionario.nome}">vazio</td>
+			<td th:text="${funcionario.email}">vazio</td>
+		</tr>
+	</table>
 </body>
 </html>
