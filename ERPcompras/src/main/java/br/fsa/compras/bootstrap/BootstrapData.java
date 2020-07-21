@@ -30,85 +30,19 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		/*
-		 * Save Data
-		 */
+		
 		funcionarioRepository.saveAll(getFuncionarios());
-//		departamentoRepository.saveAll(getDepartamentos());
+		departamentoRepository.saveAll(getDepartamentos());
 		
 		System.out.println("Cargos registrados: " + cargoRepository.count());
 		System.out.println("Departamentos registrados: " + departamentoRepository.count());
 		System.out.println("Funcionarios registrados " + funcionarioRepository.count());
 	}
 	
-//	private List<Departamento> getDepartamentos() {
-//		
-//		List<Departamento> departamentos = new ArrayList<>(2);
-//		
-//		/*
-//		 * Get Data Cargo
-//		 */
-//		Optional<Cargo> aprovadorCargoOptional = cargoRepository.findByNome("Aprovador");		
-//		if(!aprovadorCargoOptional.isPresent()) {
-//			throw new RuntimeException("Cargo não encontrado!");
-//		}
-//		
-//		Optional<Cargo> compradorCargoOptional = cargoRepository.findByNome("Comprador");		
-//		if(!compradorCargoOptional.isPresent()) {
-//			throw new RuntimeException("Cargo não encontrado!");
-//		}
-//		
-//		Optional<Cargo> gerenteCargoOptional = cargoRepository.findByNome("Gerente");		
-//		if(!gerenteCargoOptional.isPresent()) {
-//			throw new RuntimeException("Cargo não encontrado!");
-//		}
-//		
-//		Cargo aprovador = aprovadorCargoOptional.get();
-//		Cargo comprador = compradorCargoOptional.get();
-//		Cargo gerente = gerenteCargoOptional.get();
-//		
-//		/*
-//		 * Get Data Departamento
-//		 */
-//		Optional<Departamento> comprasDepartamentoOptional = departamentoRepository.findByNome("Compras");
-//		if(!comprasDepartamentoOptional.isPresent()) {
-//			throw new RuntimeException("Departamento não encontrado!");
-//		}
-//		
-//		Optional<Departamento> financeiroDepartamentoOptional = departamentoRepository.findByNome("Financeiro");
-//		if(!financeiroDepartamentoOptional.isPresent()) {
-//			throw new RuntimeException("Departamento não encontrado!");
-//		}
-//		
-//		Departamento compras = comprasDepartamentoOptional.get();
-//		Departamento financeiro = financeiroDepartamentoOptional.get();
-//		
-//		/*
-//		 * Relationships ManyToMany {Departamento} --> {Cargo}
-//		 */
-//		
-//		compras.getCargo().add(comprador);
-//		compras.getCargo().add(aprovador);
-//		compras.getCargo().add(gerente);
-//		
-//		financeiro.getCargo().add(comprador);
-//		financeiro.getCargo().add(aprovador);
-//		financeiro.getCargo().add(gerente);
-//		
-//		/*
-//		 * Add Data into Table
-//		 */
-//		departamentos.add(compras);
-//		departamentos.add(financeiro);
-//		
-//		return departamentos;
-//	}
-	
-	private List<Funcionario> getFuncionarios() {
+	public List<Departamento> allDepartamentos() {
 		
-		/*
-		 * Get Data Departamento
-		 */
+		List<Departamento> departamentos = new ArrayList<>(2);
+		
 		Optional<Departamento> comprasDepartamentoOptional = departamentoRepository.findByNome("Compras");
 		if(!comprasDepartamentoOptional.isPresent()) {
 			throw new RuntimeException("Departamento não encontrado!");
@@ -122,9 +56,16 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		Departamento compras = comprasDepartamentoOptional.get();
 		Departamento financeiro = financeiroDepartamentoOptional.get();
 		
-		/*
-		 * Get Data Cargo
-		 */
+		departamentos.add(compras);
+		departamentos.add(financeiro);
+		
+		return departamentos;
+	}
+	
+	public List<Cargo> allCargos() {
+		
+		List<Cargo> cargos = new ArrayList<>(3);
+		
 		Optional<Cargo> aprovadorCargoOptional = cargoRepository.findByNome("Aprovador");		
 		if(!aprovadorCargoOptional.isPresent()) {
 			throw new RuntimeException("Cargo não encontrado!");
@@ -144,82 +85,80 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		Cargo comprador = compradorCargoOptional.get();
 		Cargo gerente = gerenteCargoOptional.get();
 		
-		/*
-		 * Input Data Funcionario
-		 */
-		List<Funcionario> funcionarios = new ArrayList<>(5);
+		cargos.add(aprovador);
+		cargos.add(comprador);
+		cargos.add(gerente);
+		
+		return cargos;
+	}
+	
+	private List<Departamento> getDepartamentos() {
+		
+		List<Departamento> departamentos = new ArrayList<>(2);
 		
 		/*
-		 * Input Data
-		 * Relationships OneToOne {Cargo} --> {Funcionario}
-		 * Relationships OneToOne {Departamento} --> {Funcionario}
 		 * Relationships ManyToMany {Departamento} --> {Cargo}
-		 */
-		Funcionario adriano = new Funcionario();
-		adriano.setNome("Adriano Macedo Santana");
-		adriano.setEmail("adriano.santana@ads.fsa.br");
-		adriano.setCargo(gerente);
-		gerente.setFuncionario(adriano);
-		adriano.setDepartamento(compras);
-		compras.setFuncionario(adriano);		
-		compras.getCargo().add(gerente);
-		gerente.getDepartamento().add(compras);		
-		departamentoRepository.save(compras);
-		cargoRepository.save(gerente);
-		
-		Funcionario erick = new Funcionario();
-		erick.setNome("Erick Ticianeli Krywko");
-		erick.setEmail("erick.krywko@ads.fsa.br");
-		erick.setCargo(aprovador);
-		aprovador.setFuncionario(erick);
-		erick.setDepartamento(compras);
-		compras.setFuncionario(erick);
-		compras.getCargo().add(aprovador);
-		aprovador.getDepartamento().add(compras);
-		
-		Funcionario pedro = new Funcionario();
-		pedro.setNome("Pedro Ivo Ramos de Oliveira");
-		pedro.setEmail("pedro.oliveira@ads.fsa.br");
-		pedro.setCargo(comprador);
-		comprador.setFuncionario(pedro);
-		pedro.setDepartamento(compras);
-		compras.setFuncionario(pedro);
-		compras.getCargo().add(comprador);
-		comprador.getDepartamento().add(compras);
-		
-		Funcionario lucas = new Funcionario();
-		lucas.setNome("Lucas Farias Piasentin");
-		lucas.setEmail("lucas.piasentin@ads.fsa.br");
-		lucas.setCargo(comprador);
-		comprador.setFuncionario(lucas);
-		lucas.setDepartamento(financeiro);		
-		financeiro.setFuncionario(lucas);
-		financeiro.getCargo().add(comprador);
-		comprador.getDepartamento().add(financeiro);
-		
-		Funcionario jaqueline = new Funcionario();
-		jaqueline.setNome("Jaqueline da Cruz Viel");
-		jaqueline.setEmail("jaqueline.viel@ads.fsa.br");
-		jaqueline.setCargo(comprador);
-		comprador.setFuncionario(jaqueline);
-		jaqueline.setDepartamento(financeiro);
-		financeiro.setFuncionario(jaqueline);
-		financeiro.getCargo().add(comprador);
-		comprador.getDepartamento().add(financeiro);
-		
-		Funcionario carlos = new Funcionario();
-		carlos.setNome("Carlos Henrique de Oliveira");
-		carlos.setEmail("carlos.oliveira@ads.fsa.br");
-		carlos.setCargo(comprador);
-		comprador.setFuncionario(carlos);
-		carlos.setDepartamento(financeiro);
-		financeiro.setFuncionario(carlos);
-		financeiro.getCargo().add(comprador);
-		comprador.getDepartamento().add(financeiro);
+		 */		
+		allDepartamentos().get(0).getCargo().add(allCargos().get(0));
+		allDepartamentos().get(0).getCargo().add(allCargos().get(1));
+		allDepartamentos().get(0).getCargo().add(allCargos().get(2));			
+		allDepartamentos().get(1).getCargo().add(allCargos().get(0));
+		allDepartamentos().get(1).getCargo().add(allCargos().get(1));
+		allDepartamentos().get(1).getCargo().add(allCargos().get(2));
 		
 		/*
 		 * Add Data into Table
 		 */
+		departamentos.add(allDepartamentos().get(0));
+		departamentos.add(allDepartamentos().get(1));
+		
+		return departamentos;
+	}
+	
+	private List<Funcionario> getFuncionarios() {
+		
+		List<Funcionario> funcionarios = new ArrayList<>(5);
+		
+		/*
+		 * Input Data
+		 * Relationships
+		 */
+		Funcionario adriano = new Funcionario();
+		adriano.setNome("Adriano Macedo Santana");
+		adriano.setEmail("adriano.santana@ads.fsa.br");
+		adriano.setCargo(allCargos().get(2));
+		adriano.setDepartamento(allDepartamentos().get(0));
+		
+		Funcionario erick = new Funcionario();
+		erick.setNome("Erick Ticianeli Krywko");
+		erick.setEmail("erick.krywko@ads.fsa.br");
+		erick.setCargo(allCargos().get(0));		
+		erick.setDepartamento(allDepartamentos().get(0));		
+		
+		Funcionario pedro = new Funcionario();
+		pedro.setNome("Pedro Ivo Ramos de Oliveira");
+		pedro.setEmail("pedro.oliveira@ads.fsa.br");
+		pedro.setCargo(allCargos().get(1));		
+		pedro.setDepartamento(allDepartamentos().get(0));
+		
+		Funcionario lucas = new Funcionario();
+		lucas.setNome("Lucas Farias Piasentin");
+		lucas.setEmail("lucas.piasentin@ads.fsa.br");
+		lucas.setCargo(allCargos().get(1));		
+		lucas.setDepartamento(allDepartamentos().get(1));
+		
+		Funcionario jaqueline = new Funcionario();
+		jaqueline.setNome("Jaqueline da Cruz Viel");
+		jaqueline.setEmail("jaqueline.viel@ads.fsa.br");
+		jaqueline.setCargo(allCargos().get(1));		
+		jaqueline.setDepartamento(allDepartamentos().get(1));
+		
+		Funcionario carlos = new Funcionario();
+		carlos.setNome("Carlos Henrique de Oliveira");
+		carlos.setEmail("carlos.oliveira@ads.fsa.br");
+		carlos.setCargo(allCargos().get(1));
+		carlos.setDepartamento(allDepartamentos().get(1));
+		
 		funcionarios.add(adriano);
 		funcionarios.add(erick);
 		funcionarios.add(pedro);
