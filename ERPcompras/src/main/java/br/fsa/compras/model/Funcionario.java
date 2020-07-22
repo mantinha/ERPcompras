@@ -1,6 +1,8 @@
 package br.fsa.compras.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,7 @@ public class Funcionario {
 	@OneToOne
 	private Cargo cargo;
 	
-	@OneToOne
+	@Enumerated(value = EnumType.STRING)
 	private Departamento departamento;
 	
 	public Funcionario(String nome, String email) {
@@ -69,7 +71,6 @@ public class Funcionario {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
-		departamento.setFuncionario(this);
 	}
 
 	@Override

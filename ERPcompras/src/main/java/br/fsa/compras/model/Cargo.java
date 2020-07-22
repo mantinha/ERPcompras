@@ -1,13 +1,8 @@
 package br.fsa.compras.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import javax.persistence.GeneratedValue;
@@ -22,15 +17,11 @@ public class Cargo {
 	
 	private String nome;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "cargo")
-	private Set<Departamento> departamento = new HashSet<>();
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Funcionario funcionario;
 	
-	public Cargo(String nome, Set<Departamento> departamento, Funcionario funcionario) {
+	public Cargo(String nome, Funcionario funcionario) {
 		this.nome = nome;
-		this.departamento = departamento;
 		this.funcionario = funcionario;
 	}
 
@@ -56,14 +47,6 @@ public class Cargo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Set<Departamento> getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(Set<Departamento> departamento) {
-		this.departamento = departamento;
-	}	
 
 	public Funcionario getFuncionario() {
 		return funcionario;
