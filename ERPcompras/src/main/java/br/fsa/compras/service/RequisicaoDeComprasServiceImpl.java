@@ -26,4 +26,13 @@ public class RequisicaoDeComprasServiceImpl implements RequisicaoDeComprasServic
 		return requisicaoDeComprasSet;
 	}
 
+	@Override
+	public Set<RequisicaoDeCompras> postRequisicaoDeCompras() {
+
+		RequisicaoDeCompras requisicaoDeComprasSet = new RequisicaoDeCompras();
+		requisicaoDeComprasRepository.save(requisicaoDeComprasSet);
+		return null;
+	}
+	
+
 }

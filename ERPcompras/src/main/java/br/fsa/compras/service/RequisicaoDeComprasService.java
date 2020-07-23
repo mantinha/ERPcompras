@@ -8,4 +8,6 @@ public interface RequisicaoDeComprasService {
 
 	Set<RequisicaoDeCompras> getRequisicaoDeCompras();
 	
+	Set<RequisicaoDeCompras> postRequisicaoDeCompras();
+	
 }

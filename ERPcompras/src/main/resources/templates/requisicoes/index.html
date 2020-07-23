@@ -9,6 +9,13 @@
 <body>
 	<div class="container">
 		<h1>Requisições</h1>
+		<form action="#" th:action="@{/requisicoes/index}" th:object="${requisicaoDeCompras}" method="post">
+			<div class="form-group">
+				<label for="formGroupExampleInput">Código</label>
+				<input th:field="*{codigo}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+			</div>			
+		</form>
+		<h1>Requisições</h1>
 		<table>
 			<tr>
 				<th>Código</th>
