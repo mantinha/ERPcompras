@@ -31,6 +31,7 @@ public class RequisicaoDeComprasServiceImpl implements RequisicaoDeComprasServic
 
 		RequisicaoDeCompras requisicaoDeComprasSet = new RequisicaoDeCompras();
 		requisicaoDeComprasRepository.save(requisicaoDeComprasSet);
+		
 		return null;
 	}
 	

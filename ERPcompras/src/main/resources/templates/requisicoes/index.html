@@ -8,35 +8,63 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Requisições</h1>
-		<form action="#" th:action="@{/requisicoes/index}" th:object="${requisicaoDeCompras}" method="post">
-			<div class="form-group">
-				<label for="formGroupExampleInput">Código</label>
-				<input th:field="*{codigo}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-			</div>			
-		</form>
-		<h1>Requisições</h1>
-		<table>
-			<tr>
-				<th>Código</th>
-				<th>Matrícula</th>
-				<th>Matrícula do Aprovador</th>
-				<th>Centro de Custo</th>
-				<th>Matéria Prima</th>
-				<th>Quantidade</th>
-				<th>Data</th>
-				<th>Data Prevista</th>
-			</tr>
-			<tr th:each="requisicao : ${requisicoes}">
-				<td th:text="${requisicao.codigo}">loading...</td>
-				<td th:text="${requisicao.matricula}">loading...</td>
-				<td th:text="${requisicao.matriculaAprovador}">loading...</td>
-				<td th:text="${requisicao.centroDeCusto}">loading...</td>
-				<td th:text="${requisicao.codigoMateriaPrima}">loading...</td>
-				<td th:text="${requisicao.qtdRequisitada}">loading...</td>				
-				<td th:text="${requisicao.data}">loading...</td>
-				<td th:text="${requisicao.dataPrevista}">loading...</td>				
-			</tr>
+		<h1 align="center">Requisição de Compra</h1>
+		<div class="row">		
+			<div class="col"></div>
+			<div class="col">
+				<form th:action="@{requisicoes}" method="post">
+					<div class="form-group">								
+						<label for="formGroupExampleInput">Matrícula</label>
+						<input th:object="*{requisicaoDeCompras}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
+						<label for="formGroupExampleInput">Matrícula do Aprovador</label>
+						<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula do aprovador">
+						<label for="formGroupExampleInput">Centro de Custo</label>
+						<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o centro de custo">
+						<label for="formGroupExampleInput">Código da Matéria Prima</label>
+						<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o código da matéria prima">
+						<label for="formGroupExampleInput">Quantidade Requisitada</label>
+						<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade requisitada">
+						<div class="row">
+							<div class="col">
+								<label for="formGroupExampleInput">Data</label>
+								<input type="date" class="form-control" id="formGroupExampleInput">
+							</div>
+							<div class="col">
+								<label for="formGroupExampleInput">Data Prevista</label>
+								<input type="date" class="form-control" id="formGroupExampleInput">
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Aplicar</button>			
+				</form>
+			</div>
+			<div class="col"></div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Código</th>
+					<th scope="col">Matrícula</th>
+					<th scope="col">Matrícula do Aprovador</th>
+					<th scope="col">Centro de Custo</th>
+					<th scope="col">Matéria Prima</th>
+					<th scope="col">Quantidade</th>
+					<th scope="col">Data</th>
+					<th scope="col">Data Prevista</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="requisicao : ${requisicoes}">
+					<td th:text="${requisicao.codigo}">loading...</td>
+					<td th:text="${requisicao.matricula}">loading...</td>
+					<td th:text="${requisicao.matriculaAprovador}">loading...</td>
+					<td th:text="${requisicao.centroDeCusto}">loading...</td>
+					<td th:text="${requisicao.codigoMateriaPrima}">loading...</td>
+					<td th:text="${requisicao.qtdRequisitada}">loading...</td>				
+					<td th:text="${requisicao.data}">loading...</td>
+					<td th:text="${requisicao.dataPrevista}">loading...</td>				
+				</tr>
+			</tbody>
 		</table>		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

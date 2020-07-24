@@ -1,6 +1,5 @@
 package br.fsa.compras.bootstrap;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -118,8 +117,8 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		req.setCentroDeCusto(1234);
 		req.setCodigoMateriaPrima(4321);
 		req.setQtdRequisitada(5);
-		req.setData(LocalDate.now());
-		req.setDataPrevista(LocalDate.now());
+		req.setData("23/07/2020");
+		req.setDataPrevista("27/07/2020");
 		
 		requisicaoDeCompras.add(req);
 		

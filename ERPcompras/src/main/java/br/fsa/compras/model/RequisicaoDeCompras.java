@@ -1,7 +1,5 @@
 package br.fsa.compras.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +18,11 @@ public class RequisicaoDeCompras {
 	private int centroDeCusto;
 	private int codigoMateriaPrima;
 	private int qtdRequisitada;
-	private LocalDate data;
-	private LocalDate dataPrevista;
+	private String data;
+	private String dataPrevista;
 	
 	public RequisicaoDeCompras(int codigo, int matricula, int matriculaAprovador, int centroDeCusto,
-			int codigoMateriaPrima, int qtdRequisitada, LocalDate data, LocalDate dataPrevista) {
+			int codigoMateriaPrima, int qtdRequisitada, String data, String dataPrevista) {
 		this.codigo = codigo;
 		this.matricula = matricula;
 		this.matriculaAprovador = matriculaAprovador;
@@ -95,19 +93,19 @@ public class RequisicaoDeCompras {
 		this.qtdRequisitada = qtdRequisitada;
 	}
 
-	public LocalDate getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public LocalDate getDataPrevista() {
+	public String getDataPrevista() {
 		return dataPrevista;
 	}
 
-	public void setDataPrevista(LocalDate dataPrevista) {
+	public void setDataPrevista(String dataPrevista) {
 		this.dataPrevista = dataPrevista;
 	}
 	
