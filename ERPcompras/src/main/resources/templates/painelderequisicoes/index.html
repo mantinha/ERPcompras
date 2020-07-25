@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title th:text="#{index.page.title}"></title>		
+	<link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+</head>
+<body>
+	<div class="container">
+		<h1 th:text="#{index.page.title}" align="center"></h1>
+		<div class="row">
+			<div class="card">
+				<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF03}"></h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funcionário</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<div th:each="funcionario : ${funcionarios}">
+							<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
+						</div>				
+					</div>
+				</div>
+				<div class="card-body">				
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Requisição</th>								
+								<th scope="col">Data de Abertura</th>
+								<th scope="col">Matéria-Prima</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col"></th>
+								<th scope="col">Ação</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="requisicao : ${requisicoes}">
+								<td th:text="${requisicao.codigo}"></td>
+								<td th:text="${requisicao.data}"></td>
+								<td th:text="${requisicao.codigoMateriaPrima}"></td>
+								<td th:text="${requisicao.qtdRequisitada}"></td>
+								<td><a href="#" th:href="@{'/painelderequisicoes/' + ${requisicao.codigo} + '/show'}">View</a></td>
+                                <td><a href="#" th:href="@{'/painelderequisicoes/' + ${requisicao.codigo} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/painelderequisicoes/' + ${requisicao.codigo} + '/delete'}">Delete</a></td>				
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>					
+	</div>
+	<script th:src="@{webjars/jquery/3.5.1/jquery.slim.min.js}"></script>
+    <script th:src="@{webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

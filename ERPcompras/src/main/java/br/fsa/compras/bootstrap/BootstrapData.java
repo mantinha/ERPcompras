@@ -7,30 +7,32 @@ import java.util.Optional;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.fsa.compras.model.Cargo;
 import br.fsa.compras.model.Departamento;
 import br.fsa.compras.model.Funcionario;
-import br.fsa.compras.model.RequisicaoDeCompras;
+import br.fsa.compras.model.RequisicaoDeco;
 import br.fsa.compras.repository.CargoRepository;
 import br.fsa.compras.repository.FuncionarioRepository;
-import br.fsa.compras.repository.RequisicaoDeComprasRepository;
+import br.fsa.compras.repository.RequisicaoDecoRepository;
 
 @Component
 public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>{
 	
 	private final CargoRepository cargoRepository;
 	private final FuncionarioRepository funcionarioRepository;
-	private final RequisicaoDeComprasRepository requisicaoDeComprasRepository;	
+	private final RequisicaoDecoRepository requisicaoDeComprasRepository;	
 
 	public BootstrapData(CargoRepository cargoRepository, FuncionarioRepository funcionarioRepository,
-			RequisicaoDeComprasRepository requisicaoDeComprasRepository) {
+			RequisicaoDecoRepository requisicaoDeComprasRepository) {
 		this.cargoRepository = cargoRepository;
 		this.funcionarioRepository = funcionarioRepository;
 		this.requisicaoDeComprasRepository = requisicaoDeComprasRepository;
 	}
 
 	@Override
+	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 
 		funcionarioRepository.saveAll(getFuncionarios());
@@ -106,11 +108,11 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		return funcionarios;
 	}
 	
-	private List<RequisicaoDeCompras> getRequisicaoDeCompras() {
+	private List<RequisicaoDeco> getRequisicaoDeCompras() {
 		
-		List<RequisicaoDeCompras> requisicaoDeCompras = new ArrayList<>(1);
+		List<RequisicaoDeco> requisicaoDeCompras = new ArrayList<>(2);
 		
-		RequisicaoDeCompras req = new RequisicaoDeCompras();
+		RequisicaoDeco req = new RequisicaoDeco();
 		req.setCodigo(1);
 		req.setMatricula(12);
 		req.setMatriculaAprovador(123);
@@ -120,7 +122,18 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		req.setData("23/07/2020");
 		req.setDataPrevista("27/07/2020");
 		
+		RequisicaoDeco req2 = new RequisicaoDeco();
+		req2.setCodigo(1);
+		req2.setMatricula(13);
+		req2.setMatriculaAprovador(124);
+		req2.setCentroDeCusto(1235);
+		req2.setCodigoMateriaPrima(4322);
+		req2.setQtdRequisitada(5);
+		req2.setData("25/07/2020");
+		req2.setDataPrevista("27/07/2020");
+		
 		requisicaoDeCompras.add(req);
+		requisicaoDeCompras.add(req2);
 		
 		return requisicaoDeCompras;
 	}
