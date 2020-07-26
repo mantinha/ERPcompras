@@ -6,6 +6,7 @@
 	<title th:text="#{index.page.title}"></title>
 	<link th:replace="fragments/webjars :: link">
 </head>
+<style th:replace="fragments/css :: css"></style>
 <body>
 	<div class="container">
 		<h1 th:text="#{index.page.title}" align="center"></h1>
@@ -13,7 +14,7 @@
 			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
 			<div class="col">
 				<div class="card">
-				<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF01}"></h5>
+				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF01}"></h5>
 					<div class="card-body">
 						<form action="#" th:object="${requisicao}" th:action="@{/requisicoes/enviar/}" method="post">							
 	                		<input th:field="*{id}" type="hidden"/>
@@ -41,7 +42,7 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-primary">Aplicar</button>			
+							<button type="submit" class="btn btn-warning">Aplicar</button>			
 						</form>
 					</div>
 				</div>

@@ -6,6 +6,7 @@
 	<title th:text="#{index.page.title}"></title>
 	<link th:replace="fragments/webjars :: link">
 </head>
+<style th:replace="fragments/css :: css"></style>
 <body>
 	<div class="container">
 		<h1 th:text="#{index.page.title}" align="center"></h1>
@@ -13,11 +14,11 @@
 			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
 			<div class="col">
 				<div class="card">					
-					<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF03}"></h5>
+					<h5 class="card-header text-white bg-success mb-3" th:text="#{RF03}"></h5>
 					<div class="d-flex">
 						<div class="col">							
 							<div class="dropdown p-3">
-								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funcionário</button>
+								<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funcionário</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<div th:each="funcionario : ${funcionarios}">
 										<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
@@ -25,7 +26,7 @@
 								</div>
 							</div>
 							<div class="dropdown p-3">
-								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fornecedor</button>
+								<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fornecedor</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<div th:each="funcionario : ${funcionarios}">
 										<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
