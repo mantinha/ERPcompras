@@ -3,25 +3,21 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<title th:text="#{index.page.title}"></title>		
-	<link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<title th:text="#{index.page.title}"></title>
+	<link th:replace="fragments/webjars :: link">
 </head>
 <body>
-	<div class="container">
+	<div class="container">		
 		<h1 th:text="#{index.page.title}" align="center"></h1>
 		<div class="row">
-			<div class="col">
+			<div class="col" th:insert="fragments/navs :: buttons">
 			</div>
-			<div class="col">
-				<a th:text="#{RF01}" th:href="#{path_RF01}" type="button" class="btn btn-primary btn-lg btn-block"></a>
-				<a th:text="#{RF02}" th:href="#{path_RF02}" type="button" class="btn btn-primary btn-lg btn-block"></a>
-				<a th:text="#{RF03}" th:href="#{path_RF03}" type="button" class="btn btn-primary btn-lg btn-block"></a>
+			<div class="col">				
 			</div>
 			<div class="col">
 			</div>
 		</div>					
 	</div>
-	<script th:src="@{webjars/jquery/3.5.1/jquery.slim.min.js}"></script>
-    <script th:src="@{webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js}"></script>
+	<script th:replace="fragments/webjars :: script"></script>
 </body>
 </html>

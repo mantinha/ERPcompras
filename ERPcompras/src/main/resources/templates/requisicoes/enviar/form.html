@@ -3,23 +3,25 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<title th:text="#{index.page.title}"></title>		
-	<link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<title th:text="#{index.page.title}"></title>
+	<link th:replace="fragments/webjars :: link">
 </head>
 <body>
 	<div class="container">
 		<h1 th:text="#{index.page.title}" align="center"></h1>
 		<div class="row">		
-			<div class="col"></div>
+			<div class="col" th:insert="fragments/navs :: buttons"></div>
 			<div class="col">
 				<div class="card">
 				<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF03}"></h5>
 					<div class="card-body">
-					<!-- <form action="#" th:object="${requisicaoDeCompras}" th:action="@{/gerarrequisicoes}" method="post"> -->
-						<form action="#" method="post">
+						<form action="#" th:object="${requisicao}" th:action="@{/enviar/}" method="post">
+							<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+	                    		<p>Please Correct Errors Below</p>
+	                		</div>
+	                		<input type="hidden" th:field="*{id}"/>
 							<div class="form-group">								
 								<label for="formGroupExampleInput">Matrícula</label>
-								<!-- <input th:field="${matricula}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula"> -->
 								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
 								<label for="formGroupExampleInput">Matrícula do Aprovador</label>
 								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula do aprovador">
@@ -48,7 +50,6 @@
 			<div class="col"></div>
 		</div>
 	</div>
-	<script th:src="@{webjars/jquery/3.5.1/jquery.slim.min.js}"></script>
-    <script th:src="@{webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js}"></script>
+	<script th:replace="fragments/webjars :: script"></script>
 </body>
 </html>
