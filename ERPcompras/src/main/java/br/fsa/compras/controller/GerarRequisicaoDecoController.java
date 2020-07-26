@@ -1,10 +1,13 @@
 package br.fsa.compras.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.fsa.compras.command.RequisicaoDecoCommand;
 import br.fsa.compras.exception.NotFoundException;
 import br.fsa.compras.service.RequisicaoDecoService;
-
-import javax.validation.Valid;
 @Controller
 @RequestMapping("/requisicoes/enviar")
 public class GerarRequisicaoDecoController {
@@ -29,10 +30,16 @@ public class GerarRequisicaoDecoController {
 	}
 
 	@RequestMapping({"","/","/form"})
-	public String form(Model model) {
-		
-		model.addAttribute("requisicao", requisicaoDecoService.getRequisicaoDeco());
+	public String form() {
 
+		return "/requisicoes/enviar/form";
+	}
+	
+	@GetMapping({"","/","/form"})
+	public String newRequisicao(Model model) {
+		
+		model.addAttribute("requisicao", new RequisicaoDecoCommand());
+		
 		return "/requisicoes/enviar/form";
 	}
 	

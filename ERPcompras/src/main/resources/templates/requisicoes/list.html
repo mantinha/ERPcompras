@@ -10,44 +10,61 @@
 	<div class="container">
 		<h1 th:text="#{index.page.title}" align="center"></h1>
 		<div class="row">
-			<div class="card">
-				<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF03}"></h5>
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funcionário</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<div th:each="funcionario : ${funcionarios}">
-							<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
-						</div>				
+			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
+			<div class="col">
+				<div class="card">					
+					<h5 class="card-header text-white bg-primary mb-3" th:text="#{RF03}"></h5>
+					<div class="d-flex">
+						<div class="col">							
+							<div class="dropdown p-3">
+								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funcionário</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<div th:each="funcionario : ${funcionarios}">
+										<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
+									</div>				
+								</div>
+							</div>
+							<div class="dropdown p-3">
+								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fornecedor</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<div th:each="funcionario : ${funcionarios}">
+										<a th:text="${funcionario.nome}" class="dropdown-item" href="#"></a>
+									</div>				
+								</div>
+							</div>						
+						</div>
+						<div class="col">
+							<label for="formGroupExampleInput">Data</label>
+							<input type="date" class="form-control" id="formGroupExampleInput">
+						</div>
+						<div class="col">
+							<label for="formGroupExampleInput">Data Prevista</label>
+							<input type="date" class="form-control" id="formGroupExampleInput">
+						</div>					
+					</div>
+					<div class="card-body">				
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Requisição</th>								
+									<th scope="col">Data de Abertura</th>
+									<th scope="col">Matéria-Prima</th>
+									<th scope="col">Quantidade</th>									
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="requisicao : ${requisicoes}">
+									<td th:text="${requisicao.codigo}"></td>
+									<td th:text="${requisicao.data}"></td>
+									<td th:text="${requisicao.codigoMateriaPrima}"></td>
+									<td th:text="${requisicao.qtdRequisitada}"></td>													
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
-				<div class="card-body">				
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Requisição</th>								
-								<th scope="col">Data de Abertura</th>
-								<th scope="col">Matéria-Prima</th>
-								<th scope="col">Quantidade</th>
-								<th scope="col"></th>
-								<th scope="col">Ação</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="requisicao : ${requisicoes}">
-								<td th:text="${requisicao.codigo}"></td>
-								<td th:text="${requisicao.data}"></td>
-								<td th:text="${requisicao.codigoMateriaPrima}"></td>
-								<td th:text="${requisicao.qtdRequisitada}"></td>
-								<td><a href="#" th:href="@{'/requisicoes/' + ${requisicao.codigo} + '/show'}">View</a></td>
-                                <td><a href="#" th:href="@{'/requisicoes/' + ${requisicao.codigo} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/requisicoes/' + ${requisicao.codigo} + '/delete'}">Delete</a></td>				
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>					
+			</div>					
+		</div>
 	</div>
 	<script th:replace="fragments/webjars :: script"></script>
 </body>
