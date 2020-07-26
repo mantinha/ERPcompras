@@ -1,9 +1,11 @@
 package br.fsa.compras.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Telefone {
@@ -14,6 +16,9 @@ public class Telefone {
 	
 	private String numero;
 	private String responsavel;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Fornecedor fornecedor;
 
 	public Telefone(String numero, String responsavel) {
 		this.numero = numero;
@@ -46,6 +51,15 @@ public class Telefone {
 
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
+	}
+
+	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	@Override

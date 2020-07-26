@@ -4,11 +4,11 @@ public class BloqueioCommand {
 
 	private Long id;
 	
-	private Boolean bloqueio;
+	private String bloqueio;
 	private String data;
 	private String motivo;
 	
-	public BloqueioCommand(Boolean bloqueio, String data, String motivo) {
+	public BloqueioCommand(String bloqueio, String data, String motivo) {
 		this.bloqueio = bloqueio;
 		this.data = data;
 		this.motivo = motivo;
@@ -26,11 +26,11 @@ public class BloqueioCommand {
 		this.id = id;
 	}
 
-	public Boolean getBloqueio() {
+	public String getBloqueio() {
 		return bloqueio;
 	}
 
-	public void setBloqueio(Boolean bloqueio) {
+	public void setBloqueio(String bloqueio) {
 		this.bloqueio = bloqueio;
 	}
 

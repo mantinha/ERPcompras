@@ -1,16 +1,29 @@
 package br.fsa.compras.service;
 
+import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.stereotype.Service;
 
 import br.fsa.compras.command.EnderecoCommand;
 import br.fsa.compras.model.Endereco;
+import br.fsa.compras.repository.EnderecoRepository;
 
+@Service
 public class EnderecoServiceImpl implements EnderecoService {
+
+	private final EnderecoRepository enderecoRepository;
+	
+	public EnderecoServiceImpl(EnderecoRepository enderecoRepository) {
+		this.enderecoRepository = enderecoRepository;
+	}
 
 	@Override
 	public Set<Endereco> getEndereco() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Set<Endereco> enderecoSet = new HashSet<>();
+		enderecoRepository.findAll().iterator().forEachRemaining(enderecoSet::add);
+		return enderecoSet;
 	}
 
 	@Override

@@ -1,9 +1,11 @@
 package br.fsa.compras.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Bloqueio {
@@ -12,11 +14,14 @@ public class Bloqueio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Boolean bloqueio;
+	private String bloqueio;
 	private String data;
 	private String motivo;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Fornecedor fornecedor;
 	
-	public Bloqueio(Boolean bloqueio, String data, String motivo) {
+	public Bloqueio(String bloqueio, String data, String motivo) {
 		this.bloqueio = bloqueio;
 		this.data = data;
 		this.motivo = motivo;
@@ -34,11 +39,11 @@ public class Bloqueio {
 		this.id = id;
 	}
 
-	public Boolean getBloqueio() {
+	public String getBloqueio() {
 		return bloqueio;
 	}
 
-	public void setBloqueio(Boolean bloqueio) {
+	public void setBloqueio(String bloqueio) {
 		this.bloqueio = bloqueio;
 	}
 
@@ -57,7 +62,15 @@ public class Bloqueio {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
+	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
 
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

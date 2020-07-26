@@ -1,16 +1,29 @@
 package br.fsa.compras.service;
 
+import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.stereotype.Service;
 
 import br.fsa.compras.command.FornecedorCommand;
 import br.fsa.compras.model.Fornecedor;
+import br.fsa.compras.repository.FornecedorRepository;
 
+@Service
 public class FornecedorServiceImpl implements FornecedorService {
+	
+	private final FornecedorRepository fornecedorRepository;	
+
+	public FornecedorServiceImpl(FornecedorRepository fornecedorRepository) {
+		this.fornecedorRepository = fornecedorRepository;
+	}
 
 	@Override
 	public Set<Fornecedor> getFornecedor() {
-		// TODO Auto-generated method stub
-		return null;
+
+		Set<Fornecedor> fornecedorSet = new HashSet<>();
+		fornecedorRepository.findAll().iterator().forEachRemaining(fornecedorSet::add);
+		return fornecedorSet;
 	}
 
 	@Override

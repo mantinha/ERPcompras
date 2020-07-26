@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Fornecedor {
@@ -22,8 +24,14 @@ public class Fornecedor {
 	private String data;
 	private String status;
 	private String site;
+	
+	@OneToMany
 	private Set<Telefone> telefone = new HashSet<>();
+	
+	@OneToOne
 	private Endereco endereco;
+	
+	@OneToOne
 	private Bloqueio bloqueio;
 	
 	public Fornecedor(int matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,

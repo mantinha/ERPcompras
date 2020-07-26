@@ -1,9 +1,11 @@
 package br.fsa.compras.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import br.fsa.compras.model.Bloqueio;
 
-public interface BloqueioRepository extends CrudRepository<Bloqueio, Long> {
+@Repository
+public interface BloqueioRepository extends JpaRepository<Bloqueio, Long> {
 
 }
