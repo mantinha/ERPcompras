@@ -16,7 +16,7 @@
 				<div class="card">
 				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF05}"></h5>
 					<div class="card-body">
-						<form action="#" th:object="${fornecedor}" th:action="@{/fornecedores/cadastro/}" method="post">							
+						<form action="#" th:object="${fornecedor}" th:action="@{#{path_RF05}}" method="post">							
 	                		<input th:field="*{id}" type="hidden"/>
 							<div class="form-group">
 								<label for="formGroupExampleInput">Matrícula</label>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	<script th:replace="fragments/webjars :: script"></script>
 </body>
 </html>

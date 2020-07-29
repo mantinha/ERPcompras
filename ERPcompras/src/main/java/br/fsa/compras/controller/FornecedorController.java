@@ -24,6 +24,7 @@ import br.fsa.compras.service.FornecedorService;
 public class FornecedorController {
 	
 	private static final String CADASTRO_FORM_URL = "/cadastro/form";
+	private static final String ALTERA_FORM_URL = "/altera/form";
 	private final FornecedorService fornecedorService;
 	
 	public FornecedorController(FornecedorService fornecedorService) {
@@ -38,7 +39,7 @@ public class FornecedorController {
 	}
 	
 	@GetMapping({"/cadastro",CADASTRO_FORM_URL})
-	public String newFornecedor(Model model) {		
+	public String createFornecedor(Model model) {		
 		model.addAttribute("fornecedor", new FornecedorCommand());
 		
 		return "/fornecedores" + CADASTRO_FORM_URL;
@@ -60,10 +61,17 @@ public class FornecedorController {
 	}
 	
 	@GetMapping({"/altera/{id}","/altera/{id}/form"})
-	public String editFornecedor(@PathVariable String id, Model model) {		
+	public String updateFornecedor(@PathVariable String id, Model model) {		
 		model.addAttribute("fornecedor", fornecedorService.findCommandById(Long.valueOf(id)));
 		
-		return "/fornecedores/altera/form";
+		return "/fornecedores" + ALTERA_FORM_URL;
+	}
+	
+	@GetMapping({"/exclui/{id}","/exclui/{id}/form"})
+	public String deleteFornecedor(@PathVariable String id) {
+		fornecedorService.deleteById(Long.valueOf(id));
+		
+		return "redirect:/fornecedores";
 	}
 	
 	@ResponseStatus(HttpStatus.NOT_FOUND)
