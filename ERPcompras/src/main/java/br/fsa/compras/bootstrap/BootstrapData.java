@@ -189,7 +189,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		fornecedor1.setCnpj("64.784.799/0001-37");
 		fornecedor1.setData("01/07/2020");
 //		fornecedor1.setEndereco(enderecoOptional.get());
-		fornecedor1.setMatricula("001");
+		fornecedor1.setMatricula(001);
 		fornecedor1.setNomeFantasia("Caloi");
 		fornecedor1.setRazaoSocial("CALOI NORTE S.A.");
 		fornecedor1.setSite("CALOI.COM.BR");		
@@ -201,7 +201,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		fornecedor2.setCnpj("37.674.347/0001-20");
 		fornecedor2.setData("02/07/2020");
 //		fornecedor2.setEndereco(enderecoOptional.get());
-		fornecedor2.setMatricula("002");
+		fornecedor2.setMatricula(002);
 		fornecedor2.setNomeFantasia("Cannondale");
 		fornecedor2.setRazaoSocial("Paulo Ricardo Pereira Mauricio Eireli ME");
 		fornecedor2.setSite("CANNONDALE.COM.BR");		

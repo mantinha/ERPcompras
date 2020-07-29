@@ -4,7 +4,7 @@ public class FornecedorCommand {
 	
 	private Long id;	
 	
-	private String matricula;
+	private Integer matricula;
 	private String cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
@@ -15,7 +15,7 @@ public class FornecedorCommand {
 	private EnderecoCommand endereco;
 	private BloqueioCommand bloqueio;
 	
-	public FornecedorCommand(String matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
+	public FornecedorCommand(Integer matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
 			String status, String site, String telefone, EnderecoCommand endereco,
 			BloqueioCommand bloqueio) {
 		this.matricula = matricula;
@@ -42,11 +42,11 @@ public class FornecedorCommand {
 		this.id = id;
 	}
 
-	public String getMatricula() {
+	public Integer getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(String matricula) {
+	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
 

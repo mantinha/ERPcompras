@@ -14,7 +14,7 @@ public class Fornecedor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	
-	private String matricula;
+	private Integer matricula;
 	private String cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
@@ -29,7 +29,7 @@ public class Fornecedor {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Bloqueio bloqueio;
 	
-	public Fornecedor(String matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
+	public Fornecedor(Integer matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
 			String status, String site, String telefone, Endereco endereco,
 			Bloqueio bloqueio) {
 		this.matricula = matricula;
@@ -56,11 +56,11 @@ public class Fornecedor {
 		this.id = id;
 	}
 
-	public String getMatricula() {
+	public Integer getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(String matricula) {
+	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
 

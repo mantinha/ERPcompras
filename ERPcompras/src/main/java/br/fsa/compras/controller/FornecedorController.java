@@ -19,8 +19,8 @@ import br.fsa.compras.command.FornecedorCommand;
 import br.fsa.compras.exception.NotFoundException;
 import br.fsa.compras.service.FornecedorService;
 
-@RequestMapping("/fornecedores")
 @Controller
+@RequestMapping("/fornecedores")
 public class FornecedorController {
 	
 	private static final String CADASTRO_FORM_URL = "/cadastro/form";

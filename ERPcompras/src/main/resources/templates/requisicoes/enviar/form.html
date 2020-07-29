@@ -16,25 +16,25 @@
 				<div class="card">
 				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF01}"></h5>
 					<div class="card-body">
-						<form action="#" th:object="${requisicao}" th:action="@{/requisicoes/enviar/}" method="post">							
+						<form action="#" th:object="${requisicao}" th:action="@{#{path_RF01}}" method="post">							
 	                		<input th:field="*{id}" type="hidden"/>
 							<div class="form-group">
 								<label for="formGroupExampleInput">Código</label>
-								<input th:field="*{codigo}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">								
+								<input th:field="*{codigo}" 			type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">								
 								<label for="formGroupExampleInput">Matrícula</label>
-								<input th:field="*{matricula}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
+								<input th:field="*{matricula}" 			type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
 								<label for="formGroupExampleInput">Matrícula do Aprovador</label>
 								<input th:field="*{matriculaAprovador}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula do aprovador">
 								<label for="formGroupExampleInput">Centro de Custo</label>
-								<input th:field="*{centroDeCusto}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o centro de custo">
+								<input th:field="*{centroDeCusto}" 		type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o centro de custo">
 								<label for="formGroupExampleInput">Código da Matéria Prima</label>
 								<input th:field="*{codigoMateriaPrima}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o código da matéria prima">
 								<label for="formGroupExampleInput">Quantidade Requisitada</label>
-								<input th:field="*{qtdRequisitada}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade requisitada">
+								<input th:field="*{qtdRequisitada}" 	type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade requisitada">
 								<div class="row">
 									<div class="col">
 										<label for="formGroupExampleInput">Data</label>
-										<input th:field="*{data}" type="date" class="form-control" id="formGroupExampleInput">
+										<input th:field="*{data}" 		type="date" class="form-control" id="formGroupExampleInput">
 									</div>
 									<div class="col">
 										<label for="formGroupExampleInput">Data Prevista</label>

@@ -4,17 +4,17 @@ public class RequisicaoDecoCommand {
 	
 	private Long id;	
 	
-	private int codigo;
-	private int matricula;
-	private int matriculaAprovador;
-	private int centroDeCusto;
-	private int codigoMateriaPrima;
-	private int qtdRequisitada;
+	private Integer codigo;
+	private Integer matricula;
+	private Integer matriculaAprovador;
+	private Integer centroDeCusto;
+	private Integer codigoMateriaPrima;
+	private Integer qtdRequisitada;
 	private String data;
 	private String dataPrevista;
 	
-	public RequisicaoDecoCommand(int codigo, int matricula, int matriculaAprovador, int centroDeCusto,
-			int codigoMateriaPrima, int qtdRequisitada, String data, String dataPrevista) {
+	public RequisicaoDecoCommand(Integer codigo, Integer matricula, Integer matriculaAprovador, Integer centroDeCusto,
+			Integer codigoMateriaPrima, Integer qtdRequisitada, String data, String dataPrevista) {
 		this.codigo = codigo;
 		this.matricula = matricula;
 		this.matriculaAprovador = matriculaAprovador;
@@ -35,40 +35,40 @@ public class RequisicaoDecoCommand {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public int getMatricula() {
+	public Integer getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(int matricula) {
+	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
-	public int getMatriculaAprovador() {
+	public Integer getMatriculaAprovador() {
 		return matriculaAprovador;
 	}
-	public void setMatriculaAprovador(int matriculaAprovador) {
+	public void setMatriculaAprovador(Integer matriculaAprovador) {
 		this.matriculaAprovador = matriculaAprovador;
 	}
-	public int getCentroDeCusto() {
+	public Integer getCentroDeCusto() {
 		return centroDeCusto;
 	}
-	public void setCentroDeCusto(int centroDeCusto) {
+	public void setCentroDeCusto(Integer centroDeCusto) {
 		this.centroDeCusto = centroDeCusto;
 	}
-	public int getCodigoMateriaPrima() {
+	public Integer getCodigoMateriaPrima() {
 		return codigoMateriaPrima;
 	}
-	public void setCodigoMateriaPrima(int codigoMateriaPrima) {
+	public void setCodigoMateriaPrima(Integer codigoMateriaPrima) {
 		this.codigoMateriaPrima = codigoMateriaPrima;
 	}
-	public int getQtdRequisitada() {
+	public Integer getQtdRequisitada() {
 		return qtdRequisitada;
 	}
-	public void setQtdRequisitada(int qtdRequisitada) {
+	public void setQtdRequisitada(Integer qtdRequisitada) {
 		this.qtdRequisitada = qtdRequisitada;
 	}
 	public String getData() {
@@ -86,8 +86,8 @@ public class RequisicaoDecoCommand {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final Integer prime = 31;
+		Integer result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
