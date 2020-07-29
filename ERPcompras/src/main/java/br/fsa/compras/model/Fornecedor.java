@@ -1,13 +1,10 @@
 package br.fsa.compras.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -24,18 +21,16 @@ public class Fornecedor {
 	private String data;
 	private String status;
 	private String site;
+	private String telefone;
 	
-	@OneToMany
-	private Set<Telefone> telefone = new HashSet<>();
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Bloqueio bloqueio;
 	
 	public Fornecedor(int matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
-			String status, String site, Set<Telefone> telefone, Endereco endereco,
+			String status, String site, String telefone, Endereco endereco,
 			Bloqueio bloqueio) {
 		this.matricula = matricula;
 		this.cnpj = cnpj;
@@ -117,11 +112,11 @@ public class Fornecedor {
 		this.site = site;
 	}
 
-	public Set<Telefone> getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Set<Telefone> telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

@@ -1,6 +1,5 @@
 package br.fsa.compras.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +17,7 @@ public class Bloqueio {
 	private String data;
 	private String motivo;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Fornecedor fornecedor;
 	
 	public Bloqueio(String bloqueio, String data, String motivo) {

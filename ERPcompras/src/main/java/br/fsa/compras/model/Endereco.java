@@ -1,15 +1,11 @@
 package br.fsa.compras.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import org.springframework.context.annotation.Primary;
-
-@Primary
 @Entity
 public class Endereco {
 	
@@ -24,7 +20,7 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Fornecedor fornecedor;
 	
 	public Endereco(String cep, String rua, int numero, String bairro, String cidade, String estado) {

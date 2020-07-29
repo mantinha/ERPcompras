@@ -4,18 +4,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.fsa.compras.command.FornecedorCommand;
+import br.fsa.compras.converter.FornecedorCommandToFornecedor;
+import br.fsa.compras.converter.FornecedorToFornecedorCommand;
 import br.fsa.compras.model.Fornecedor;
 import br.fsa.compras.repository.FornecedorRepository;
 
 @Service
 public class FornecedorServiceImpl implements FornecedorService {
 	
-	private final FornecedorRepository fornecedorRepository;	
+	private final FornecedorRepository fornecedorRepository;
+	private final FornecedorCommandToFornecedor fornecedorCommandToFornecedor;
+	private final FornecedorToFornecedorCommand fornecedorToFornecedorCommand;
 
-	public FornecedorServiceImpl(FornecedorRepository fornecedorRepository) {
+	public FornecedorServiceImpl(FornecedorRepository fornecedorRepository,
+			FornecedorCommandToFornecedor fornecedorCommandToFornecedor,
+			FornecedorToFornecedorCommand fornecedorToFornecedorCommand) {
 		this.fornecedorRepository = fornecedorRepository;
+		this.fornecedorCommandToFornecedor = fornecedorCommandToFornecedor;
+		this.fornecedorToFornecedorCommand = fornecedorToFornecedorCommand;
 	}
 
 	@Override
@@ -39,9 +48,12 @@ public class FornecedorServiceImpl implements FornecedorService {
 	}
 
 	@Override
+	@Transactional
 	public FornecedorCommand saveFornecedorCommand(FornecedorCommand command) {
-		// TODO Auto-generated method stub
-		return null;
+		Fornecedor detachedFornecedor = fornecedorCommandToFornecedor.convert(command);
+		Fornecedor savedFornecedor = fornecedorRepository.save(detachedFornecedor);
+		
+		return fornecedorToFornecedorCommand.convert(savedFornecedor);
 	}
 
 	@Override

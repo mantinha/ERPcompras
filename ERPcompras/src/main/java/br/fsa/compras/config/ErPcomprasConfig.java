@@ -9,7 +9,6 @@ import br.fsa.compras.model.Endereco;
 import br.fsa.compras.model.Fornecedor;
 import br.fsa.compras.model.Funcionario;
 import br.fsa.compras.model.RequisicaoDeco;
-import br.fsa.compras.model.Telefone;
 
 @Configuration
 public class ErPcomprasConfig {
@@ -31,8 +30,5 @@ public class ErPcomprasConfig {
 	
 	@Bean
 	public RequisicaoDeco requisicaoDeco() { return new RequisicaoDeco(); }
-	
-	@Bean
-	public Telefone telefone() { return new Telefone(); }
 
 }

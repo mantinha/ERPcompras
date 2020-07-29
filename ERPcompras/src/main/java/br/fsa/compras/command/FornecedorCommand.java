@@ -1,8 +1,5 @@
 package br.fsa.compras.command;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class FornecedorCommand {
 	
 	private Long id;	
@@ -14,12 +11,12 @@ public class FornecedorCommand {
 	private String data;
 	private String status;
 	private String site;
-	private Set<TelefoneCommand> telefone = new HashSet<>();
+	private String telefone;
 	private EnderecoCommand endereco;
 	private BloqueioCommand bloqueio;
 	
 	public FornecedorCommand(int matricula, String cnpj, String razaoSocial, String nomeFantasia, String data,
-			String status, String site, Set<TelefoneCommand> telefone, EnderecoCommand endereco,
+			String status, String site, String telefone, EnderecoCommand endereco,
 			BloqueioCommand bloqueio) {
 		this.matricula = matricula;
 		this.cnpj = cnpj;
@@ -101,11 +98,11 @@ public class FornecedorCommand {
 		this.site = site;
 	}
 
-	public Set<TelefoneCommand> getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Set<TelefoneCommand> telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.fsa.compras.model.Bloqueio;
 import br.fsa.compras.model.Cargo;
 import br.fsa.compras.model.Departamento;
+import br.fsa.compras.model.Fornecedor;
 import br.fsa.compras.model.Funcionario;
 import br.fsa.compras.model.RequisicaoDeco;
+import br.fsa.compras.repository.BloqueioRepository;
 import br.fsa.compras.repository.CargoRepository;
+import br.fsa.compras.repository.EnderecoRepository;
+import br.fsa.compras.repository.FornecedorRepository;
 import br.fsa.compras.repository.FuncionarioRepository;
 import br.fsa.compras.repository.RequisicaoDecoRepository;
 
@@ -22,13 +28,21 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 	
 	private final CargoRepository cargoRepository;
 	private final FuncionarioRepository funcionarioRepository;
-	private final RequisicaoDecoRepository requisicaoDeComprasRepository;	
-
+	private final RequisicaoDecoRepository requisicaoDeComprasRepository;
+	private final FornecedorRepository fornecedorRepository;
+	private final BloqueioRepository bloqueioRepository;
+	private final EnderecoRepository enderecoRepository;
+	
+	@Autowired
 	public BootstrapData(CargoRepository cargoRepository, FuncionarioRepository funcionarioRepository,
-			RequisicaoDecoRepository requisicaoDeComprasRepository) {
+			RequisicaoDecoRepository requisicaoDeComprasRepository, FornecedorRepository fornecedorRepository,
+			BloqueioRepository bloqueioRepository, EnderecoRepository enderecoRepository) {
 		this.cargoRepository = cargoRepository;
 		this.funcionarioRepository = funcionarioRepository;
 		this.requisicaoDeComprasRepository = requisicaoDeComprasRepository;
+		this.fornecedorRepository = fornecedorRepository;
+		this.bloqueioRepository = bloqueioRepository;
+		this.enderecoRepository = enderecoRepository;
 	}
 
 	@Override
@@ -37,11 +51,13 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 
 		funcionarioRepository.saveAll(getFuncionarios());
 		requisicaoDeComprasRepository.saveAll(getRequisicaoDeCompras());
+		fornecedorRepository.saveAll(getFornecedores());
 		
 		System.out.println("Cargos registrados: " + cargoRepository.count());
 		System.out.println("Funcionarios registrados " + funcionarioRepository.count());
 		System.out.println("Requisições registradas " + requisicaoDeComprasRepository.count());
-	}
+		System.out.println("Fornecedores registrados " + fornecedorRepository.count());
+	}	
 
 	private List<Funcionario> getFuncionarios() {
 		
@@ -110,32 +126,92 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 	
 	private List<RequisicaoDeco> getRequisicaoDeCompras() {
 		
-		List<RequisicaoDeco> requisicaoDeCompras = new ArrayList<>(2);
+		List<RequisicaoDeco> requisicaoDeCompras = new ArrayList<>(3);
 		
 		RequisicaoDeco req = new RequisicaoDeco();
 		req.setCodigo(1);
-		req.setMatricula(12);
-		req.setMatriculaAprovador(123);
-		req.setCentroDeCusto(1234);
-		req.setCodigoMateriaPrima(4321);
-		req.setQtdRequisitada(5);
+		req.setMatricula(001);
+		req.setMatriculaAprovador(013);
+		req.setCentroDeCusto(12345);
+		req.setCodigoMateriaPrima(1111);
+		req.setQtdRequisitada(10);
 		req.setData("23/07/2020");
 		req.setDataPrevista("27/07/2020");
 		
 		RequisicaoDeco req2 = new RequisicaoDeco();
-		req2.setCodigo(1);
-		req2.setMatricula(13);
-		req2.setMatriculaAprovador(124);
-		req2.setCentroDeCusto(1235);
-		req2.setCodigoMateriaPrima(4322);
-		req2.setQtdRequisitada(5);
+		req2.setCodigo(2);
+		req2.setMatricula(002);
+		req2.setMatriculaAprovador(013);
+		req2.setCentroDeCusto(54321);
+		req2.setCodigoMateriaPrima(2222);
+		req2.setQtdRequisitada(20);
 		req2.setData("25/07/2020");
 		req2.setDataPrevista("27/07/2020");
 		
+		RequisicaoDeco req3 = new RequisicaoDeco();
+		req3.setCodigo(3);
+		req3.setMatricula(003);
+		req3.setMatriculaAprovador(013);
+		req3.setCentroDeCusto(12321);
+		req3.setCodigoMateriaPrima(3333);
+		req3.setQtdRequisitada(30);
+		req3.setData("26/07/2020");
+		req3.setDataPrevista("30/07/2020");
+		
 		requisicaoDeCompras.add(req);
 		requisicaoDeCompras.add(req2);
+		requisicaoDeCompras.add(req3);
 		
 		return requisicaoDeCompras;
+	}
+	
+	private List<Fornecedor> getFornecedores() {
+		
+		Optional<Bloqueio> bloqueioOptional = bloqueioRepository.findByBloqueio("Nao");		
+		if(!bloqueioOptional.isPresent()) {
+			throw new RuntimeException("Bloqueio não encontrado!");
+		}
+		
+		Optional<Bloqueio> dataOptional = bloqueioRepository.findByData("Sem data");		
+		if(!dataOptional.isPresent()) {
+			throw new RuntimeException("Data não encontrada!");
+		}
+		
+		Optional<Bloqueio> motivoOptional = bloqueioRepository.findByMotivo("Sem motivo");		
+		if(!motivoOptional.isPresent()) {
+			throw new RuntimeException("Motivo não encontrado!");
+		}
+		
+		List<Fornecedor> fornecedores = new ArrayList<>(2);
+		
+		Fornecedor fornecedor1 = new Fornecedor();
+		
+		fornecedor1.setCnpj("64.784.799/0001-37");
+		fornecedor1.setData("01/07/2020");
+//		fornecedor1.setEndereco(enderecoOptional.get());
+		fornecedor1.setMatricula(001);
+		fornecedor1.setNomeFantasia("Caloi");
+		fornecedor1.setRazaoSocial("CALOI NORTE S.A.");
+		fornecedor1.setSite("CALOI.COM.BR");		
+		fornecedor1.setStatus("ATIVO");
+		fornecedor1.setTelefone("4433-2211");
+		
+		Fornecedor fornecedor2 = new Fornecedor();
+		
+		fornecedor2.setCnpj("37.674.347/0001-20");
+		fornecedor2.setData("02/07/2020");
+//		fornecedor2.setEndereco(enderecoOptional.get());
+		fornecedor2.setMatricula(002);
+		fornecedor2.setNomeFantasia("Cannondale");
+		fornecedor2.setRazaoSocial("Paulo Ricardo Pereira Mauricio Eireli ME");
+		fornecedor2.setSite("CANNONDALE.COM.BR");		
+		fornecedor2.setStatus("ATIVO");
+		fornecedor2.setTelefone("5533-2277");
+		
+		fornecedores.add(fornecedor1);
+		fornecedores.add(fornecedor2);
+		
+		return fornecedores;
 	}
 	
 }
