@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -43,7 +44,7 @@ public class FornecedorController {
 		return "/fornecedores" + CADASTRO_FORM_URL;
 	}
 	
-	@PostMapping({"/cadastro",CADASTRO_FORM_URL})
+	@PostMapping({"/cadastro",CADASTRO_FORM_URL,"/altera/{id}","/altera/{id}/form"})
 	public String submitFornecedor(@Valid @ModelAttribute("fornecedor") FornecedorCommand command, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors().forEach(objectError -> {
@@ -56,6 +57,13 @@ public class FornecedorController {
 		fornecedorService.saveFornecedorCommand(command);
 		
 		return "redirect:/fornecedores";
+	}
+	
+	@GetMapping({"/altera/{id}","/altera/{id}/form"})
+	public String editFornecedor(@PathVariable String id, Model model) {		
+		model.addAttribute("fornecedor", fornecedorService.findCommandById(Long.valueOf(id)));
+		
+		return "/fornecedores/altera/form";
 	}
 	
 	@ResponseStatus(HttpStatus.NOT_FOUND)

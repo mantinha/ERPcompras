@@ -14,23 +14,23 @@
 			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
 			<div class="col">
 				<div class="card">
-				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF05}"></h5>
+				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF06}"></h5>
 					<div class="card-body">
-						<form action="#" th:object="${fornecedor}" th:action="@{/fornecedores/cadastro/}" method="post">							
+						<form action="#" th:object="${fornecedor}" th:action="@{#{path_RF06} + ${fornecedor.id}}" method="post">							
 	                		<input th:field="*{id}" type="hidden"/>
 							<div class="form-group">
 								<label for="formGroupExampleInput">Matrícula</label>
-								<input th:field="*{matricula}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">								
+								<input th:field="*{matricula}" type="text" class="form-control" id="formGroupExampleInput">								
 								<label for="formGroupExampleInput">CNPJ</label>
-								<input th:field="*{cnpj}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
+								<input th:field="*{cnpj}" type="text" class="form-control" id="formGroupExampleInput">
 								<label for="formGroupExampleInput">Razão Social</label>
-								<input th:field="*{razaoSocial}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula do aprovador">
+								<input th:field="*{razaoSocial}" type="text" class="form-control" id="formGroupExampleInput">
 								<label for="formGroupExampleInput">Nome Fantasia</label>
-								<input th:field="*{nomeFantasia}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o centro de custo">
+								<input th:field="*{nomeFantasia}" type="text" class="form-control" id="formGroupExampleInput">
 								<label for="formGroupExampleInput">Status</label>
-								<input th:field="*{status}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o código da matéria prima">
+								<input th:field="*{status}" type="text" class="form-control" id="formGroupExampleInput">
 								<label for="formGroupExampleInput">Site</label>
-								<input th:field="*{site}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade requisitada">
+								<input th:field="*{site}" type="text" class="form-control" id="formGroupExampleInput">
 								<div class="row">
 									<div class="col">
 										<label for="formGroupExampleInput">Data</label>
@@ -42,7 +42,7 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-warning">Cadastrar</button>			
+							<button type="submit" class="btn btn-warning">Alterar</button>
 						</form>
 					</div>
 				</div>

@@ -24,7 +24,7 @@
 						</div>					
 					</div>
 					<div class="card-body">				
-						<table class="table">
+						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th scope="col">CNPJ</th>								
@@ -35,17 +35,15 @@
 							</thead>
 							<tbody>
 								<tr th:each="fornecedor : ${fornecedores}">
-									<td th:text="${fornecedor.cnpj}"></td>
-									<td th:text="${fornecedor.nomeFantasia}"></td>
-									<td th:text="${fornecedor.telefone}"></td>
-									<td th:text="${fornecedor.status}"></td>													
+									<td><a th:text="${fornecedor.cnpj}" 		th:href="@{#{path_RF06} + ${fornecedor.id} + '/form'}" style="color:inherit;text-decoration:inherit;"></a></td>
+									<td><a th:text="${fornecedor.nomeFantasia}" th:href="@{#{path_RF06} + ${fornecedor.id} + '/form'}" style="color:inherit;text-decoration:inherit;"></a></td>
+									<td><a th:text="${fornecedor.telefone}" 	th:href="@{#{path_RF06} + ${fornecedor.id} + '/form'}" style="color:inherit;text-decoration:inherit;"></a></td>
+									<td><a th:text="${fornecedor.status}" 		th:href="@{#{path_RF06} + ${fornecedor.id} + '/form'}" style="color:inherit;text-decoration:inherit;"></a></td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="row justify-content-center">
-							<a th:text="#{RF05}" th:href="#{path_RF05}" type="button" class="btn btn-warning m-3"></a>
-							<a th:text="#{RF06}" th:href="#{path_RF06}" type="button" class="btn btn-warning m-3"></a>
-							<a th:text="#{RF07}" th:href="#{path_RF07}" type="button" class="btn btn-warning m-3"></a>
+							<a th:text="#{RF05}" th:href="#{path_RF05}" type="button" class="btn btn-warning m-3"></a>							
 						</div>						
 					</div>
 				</div>

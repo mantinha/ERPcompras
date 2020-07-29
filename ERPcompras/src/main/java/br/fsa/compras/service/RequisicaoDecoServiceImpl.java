@@ -29,8 +29,7 @@ public class RequisicaoDecoServiceImpl implements RequisicaoDecoService {
 	}
 
 	@Override
-	public Set<RequisicaoDeco> getRequisicaoDeco() {
-		
+	public Set<RequisicaoDeco> getRequisicaoDeco() {		
 		Set<RequisicaoDeco> requisicaoDecoSet = new HashSet<>();
 		requisicaoDecoRepository.findAll().iterator().forEachRemaining(requisicaoDecoSet::add);
 
@@ -38,8 +37,7 @@ public class RequisicaoDecoServiceImpl implements RequisicaoDecoService {
 	}
 	
 	@Override
-	public RequisicaoDeco findById(Long l) {
-		
+	public RequisicaoDeco findById(Long l) {		
 		Optional<RequisicaoDeco> requisicaoOptional = requisicaoDecoRepository.findById(l);
 		
 		if(!requisicaoOptional.isPresent()) {
@@ -56,8 +54,7 @@ public class RequisicaoDecoServiceImpl implements RequisicaoDecoService {
 
 	@Override
 	@Transactional
-	public RequisicaoDecoCommand saveRequisicaoDecoCommand(RequisicaoDecoCommand command) {
-		
+	public RequisicaoDecoCommand saveRequisicaoDecoCommand(RequisicaoDecoCommand command) {		
 		RequisicaoDeco detachedRequisicaoDeco = requisicaoDecoCommandToRequisicaoDeco.convert(command);
 		RequisicaoDeco savedRequisicaoDeco = requisicaoDecoRepository.save(detachedRequisicaoDeco);
 		
@@ -65,8 +62,7 @@ public class RequisicaoDecoServiceImpl implements RequisicaoDecoService {
 	}
 
 	@Override
-	public void deleteById(Long idToDelete) {
-		
+	public void deleteById(Long idToDelete) {		
 		requisicaoDecoRepository.deleteById(idToDelete);
 		
 	}

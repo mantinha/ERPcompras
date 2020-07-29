@@ -1,6 +1,7 @@
 package br.fsa.compras.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -29,22 +30,27 @@ public class FornecedorServiceImpl implements FornecedorService {
 
 	@Override
 	public Set<Fornecedor> getFornecedor() {
-
 		Set<Fornecedor> fornecedorSet = new HashSet<>();
+		
 		fornecedorRepository.findAll().iterator().forEachRemaining(fornecedorSet::add);
 		return fornecedorSet;
 	}
 
 	@Override
 	public Fornecedor findById(Long l) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Fornecedor> fornecedorOptional = fornecedorRepository.findById(l);
+		
+		if(!fornecedorOptional.isPresent()) {
+			throw new RuntimeException("Fornecedor não encontrada! Para o id: " + l.toString());
+		}
+		
+		return fornecedorOptional.get();
 	}
 
 	@Override
+	@Transactional
 	public FornecedorCommand findCommandById(Long l) {
-		// TODO Auto-generated method stub
-		return null;
+		return fornecedorToFornecedorCommand.convert(findById(l));
 	}
 
 	@Override
@@ -58,7 +64,7 @@ public class FornecedorServiceImpl implements FornecedorService {
 
 	@Override
 	public void deleteById(Long idToDelete) {
-		// TODO Auto-generated method stub
+		fornecedorRepository.deleteById(idToDelete);
 		
 	}
 
