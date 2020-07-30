@@ -1,6 +1,8 @@
 package br.fsa.compras.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,8 @@ public class MateriaPrima {
 	private Integer codigo;
 	private Integer quantidade;
 	private String descricao;
+	
+	@Enumerated(value = EnumType.STRING)
 	private UnidadeDeMedida unidadeDeMedida;	
 	
 	public MateriaPrima(Integer codigo, Integer quantidade, String descricao, UnidadeDeMedida unidadeDeMedida) {

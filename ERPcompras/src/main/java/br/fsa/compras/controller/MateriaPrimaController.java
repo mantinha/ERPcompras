@@ -32,21 +32,21 @@ public class MateriaPrimaController {
 	}
 
 	@RequestMapping({"","/","/list"})
-	public String listFornecedor(Model model) {
+	public String listMateriaPrima(Model model) {
 		model.addAttribute("insumos", materiaPrimaService.getMateriaPrima());
 		
 		return "/insumos/list";
 	}
 	
 	@GetMapping({"/cadastro",CADASTRO_FORM_URL})
-	public String createFornecedor(Model model) {		
+	public String createMateriaPrima(Model model) {		
 		model.addAttribute("insumo", new MateriaPrimaCommand());
 		
 		return "/insumos" + CADASTRO_FORM_URL;
 	}
 	
 	@PostMapping({"/cadastro",CADASTRO_FORM_URL,"/altera/{id}","/altera/{id}/form"})
-	public String submitFornecedor(@Valid @ModelAttribute("insumo") MateriaPrimaCommand command, BindingResult bindingResult) {
+	public String submitMateriaPrima(@Valid @ModelAttribute("insumo") MateriaPrimaCommand command, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors().forEach(objectError -> {
 				System.out.println(objectError.toString());
@@ -61,14 +61,14 @@ public class MateriaPrimaController {
 	}
 	
 	@GetMapping({"/altera/{id}","/altera/{id}/form"})
-	public String updateFornecedor(@PathVariable String id, Model model) {		
+	public String updateMateriaPrima(@PathVariable String id, Model model) {		
 		model.addAttribute("insumo", materiaPrimaService.findCommandById(Long.valueOf(id)));
 		
 		return "/insumos" + ALTERA_FORM_URL;
 	}
 	
 	@GetMapping({"/exclui/{id}","/exclui/{id}/form"})
-	public String deleteFornecedor(@PathVariable String id) {
+	public String deleteMateriaPrima(@PathVariable String id) {
 		materiaPrimaService.deleteById(Long.valueOf(id));
 		
 		return "redirect:/insumos";

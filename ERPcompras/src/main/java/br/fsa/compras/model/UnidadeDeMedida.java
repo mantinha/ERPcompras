@@ -1,4 +1,5 @@
 package br.fsa.compras.model;
+
 /*
  * TABELA ATUALIZADA 2020
  * CJ = CONJUNTO

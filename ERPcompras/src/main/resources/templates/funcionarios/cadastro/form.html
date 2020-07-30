@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title th:text="#{index.page.title}"></title>
+	<link th:replace="fragments/webjars :: link">
+</head>
+<style th:replace="fragments/css :: css"></style>
+<body>
+	<div class="container">
+		<h1 th:text="#{index.page.title}" align="center"></h1>
+		<div class="row">		
+			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
+			<div class="col">
+				<div class="card">
+				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF42}"></h5>
+					<div class="card-body">
+						<form action="#" th:object="${funcionario}" th:action="@{#{path_RF42}}" method="post">							
+	                		<input th:field="*{id}" type="hidden"/>
+							<div class="form-group">
+								<label for="formGroupExampleInput">Matrícula</label>
+								<input th:field="*{matricula}" 				type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">								
+								<label for="formGroupExampleInput">Nome</label>
+								<input th:field="*{nome}"	 				type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o nome">
+								<label for="formGroupExampleInput">Email</label>
+								<input th:field="*{email}"	 				type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o email">
+								<div class="row">
+									<div class="col">
+										<label for="formGroupExampleInput">Cargo</label>	
+										<select th:field="*{cargo}" class="form-control custom-select">
+											<option th:each="cargo : ${T(br.fsa.compras.model.Cargo).values()}" th:value="${cargo.name()}" th:text="${cargo.name()}" class="dropdown-item"></option>
+										</select>
+									</div>
+									<div class="col">
+										<label for="formGroupExampleInput">Departamento</label>	
+										<select th:field="*{departamento}" class="form-control custom-select">
+											<option th:each="departamento : ${T(br.fsa.compras.model.Departamento).values()}" th:value="${departamento.name()}" th:text="${departamento.name()}" class="dropdown-item"></option>
+										</select>
+									</div>
+								</div>													
+							</div>
+							<button type="submit" class="btn btn-warning">Cadastrar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script th:replace="fragments/webjars :: script"></script>
+</body>
+</html>

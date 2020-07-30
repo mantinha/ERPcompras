@@ -1,17 +1,13 @@
-package br.fsa.compras.model;
+package br.fsa.compras.command;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
-public class Funcionario {
+import br.fsa.compras.model.Cargo;
+import br.fsa.compras.model.Departamento;
+
+public class FuncionarioCommand {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private Integer matricula;	
@@ -24,19 +20,17 @@ public class Funcionario {
 	@Enumerated(value = EnumType.STRING)
 	private Departamento departamento;
 
-	public Funcionario(Integer matricula, String nome, String email, Cargo cargo, Departamento departamento) {
+	public FuncionarioCommand(Integer matricula, String nome, String email, Cargo cargo, Departamento departamento) {
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
 		this.cargo = cargo;
 		this.departamento = departamento;
 	}
-	
 
-	public Funcionario() {
+	public FuncionarioCommand() {
 		
 	}
-
 
 	public Long getId() {
 		return id;
@@ -102,7 +96,7 @@ public class Funcionario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionario other = (Funcionario) obj;
+		FuncionarioCommand other = (FuncionarioCommand) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
