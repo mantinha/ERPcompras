@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title th:text="#{index.page.title}"></title>
+	<link th:replace="fragments/webjars :: link">
+</head>
+<style th:replace="fragments/css :: css"></style>
+<body>
+	<div class="container">
+		<h1 th:text="#{index.page.title}" align="center"></h1>
+		<div class="row">		
+			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
+			<div class="col">
+				<div class="card">
+				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF51}"></h5>
+					<div class="card-body">
+						<form action="#" th:object="${endereco}" th:action="@{#{path_RF04} + #{path_RF49} + ${endereco.id}}" method="post">							
+	                		<input th:field="*{id}" type="hidden"/>
+							<div class="form-group">
+								<label for="formGroupExampleInput">CEP</label>
+								<input th:field="*{cep}" 	type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">								
+								<label for="formGroupExampleInput">Rua</label>
+								<input th:field="*{rua}" 	type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula">
+								<div class="row">
+									<div class="col">
+										<label for="formGroupExampleInput">Número</label>
+										<input th:field="*{numero}"	type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a matrícula do aprovador">
+									</div>
+									<div class="col">
+										<label for="formGroupExampleInput">Bairro</label>
+										<input th:field="*{bairro}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o centro de custo">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<label for="formGroupExampleInput">Cidade</label>
+										<input th:field="*{cidade}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o código da matéria prima">
+									</div>
+									<div class="col">
+										<label for="formGroupExampleInput">Estado</label>
+										<input th:field="*{estado}" type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade requisitada">
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-warning">Salvar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script th:replace="fragments/webjars :: script"></script>
+</body>
+</html>

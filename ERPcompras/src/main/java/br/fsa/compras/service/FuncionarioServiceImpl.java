@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.fsa.compras.command.FuncionarioCommand;
 import br.fsa.compras.converter.FuncionarioCommandToFuncionario;
@@ -45,12 +46,14 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		
 		return funcionarioOptional.get();
 	}
-
+	
+	@Transactional
 	@Override
 	public FuncionarioCommand findCommandById(Long l) {
 		return funcionarioToFuncionarioCommand.convert(findById(l));
 	}
-
+	
+	@Transactional
 	@Override
 	public FuncionarioCommand saveFuncionarioCommand(FuncionarioCommand command) {
 		Funcionario detachedFuncionario = funcionarioCommandToFuncionario.convert(command);

@@ -2,12 +2,12 @@ package br.fsa.compras.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import br.fsa.compras.command.EnderecoCommand;
 import br.fsa.compras.model.Endereco;
 
-@Controller
+@Component
 public class EnderecoToEnderecoCommand implements Converter<Endereco, EnderecoCommand>{
 
 	public EnderecoToEnderecoCommand() {

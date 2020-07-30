@@ -48,6 +48,7 @@ public class RequisicaoDecoServiceImpl implements RequisicaoDecoService {
 	}
 	
 	@Override
+	@Transactional
 	public RequisicaoDecoCommand findCommandById(Long l) {
 		return requisicaoDecoToRequisicaoDecoCommand.convert(findById(l));
 	}
