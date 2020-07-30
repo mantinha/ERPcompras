@@ -15,12 +15,15 @@ import br.fsa.compras.model.Cargo;
 import br.fsa.compras.model.Departamento;
 import br.fsa.compras.model.Fornecedor;
 import br.fsa.compras.model.Funcionario;
+import br.fsa.compras.model.MateriaPrima;
 import br.fsa.compras.model.RequisicaoDeco;
+import br.fsa.compras.model.UnidadeDeMedida;
 import br.fsa.compras.repository.BloqueioRepository;
 import br.fsa.compras.repository.CargoRepository;
 import br.fsa.compras.repository.EnderecoRepository;
 import br.fsa.compras.repository.FornecedorRepository;
 import br.fsa.compras.repository.FuncionarioRepository;
+import br.fsa.compras.repository.MateriaPrimaRepository;
 import br.fsa.compras.repository.RequisicaoDecoRepository;
 
 @Component
@@ -32,17 +35,20 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 	private final FornecedorRepository fornecedorRepository;
 	private final BloqueioRepository bloqueioRepository;
 	private final EnderecoRepository enderecoRepository;
+	private final MateriaPrimaRepository materiaPrimaRepository;
 	
 	@Autowired
 	public BootstrapData(CargoRepository cargoRepository, FuncionarioRepository funcionarioRepository,
 			RequisicaoDecoRepository requisicaoDeComprasRepository, FornecedorRepository fornecedorRepository,
-			BloqueioRepository bloqueioRepository, EnderecoRepository enderecoRepository) {
+			BloqueioRepository bloqueioRepository, EnderecoRepository enderecoRepository,
+			MateriaPrimaRepository materiaPrimaRepository) {
 		this.cargoRepository = cargoRepository;
 		this.funcionarioRepository = funcionarioRepository;
 		this.requisicaoDeComprasRepository = requisicaoDeComprasRepository;
 		this.fornecedorRepository = fornecedorRepository;
 		this.bloqueioRepository = bloqueioRepository;
 		this.enderecoRepository = enderecoRepository;
+		this.materiaPrimaRepository = materiaPrimaRepository;
 	}
 
 	@Override
@@ -52,12 +58,16 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		funcionarioRepository.saveAll(getFuncionarios());
 		requisicaoDeComprasRepository.saveAll(getRequisicaoDeCompras());
 		fornecedorRepository.saveAll(getFornecedores());
+		materiaPrimaRepository.saveAll(getMateriaPrima());
 		
 		System.out.println("Cargos registrados: " + cargoRepository.count());
 		System.out.println("Funcionarios registrados " + funcionarioRepository.count());
 		System.out.println("Requisições registradas " + requisicaoDeComprasRepository.count());
 		System.out.println("Fornecedores registrados " + fornecedorRepository.count());
+		System.out.println("Insumos registrados " + materiaPrimaRepository.count());
 	}	
+
+
 
 	private List<Funcionario> getFuncionarios() {
 		
@@ -214,4 +224,24 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 		return fornecedores;
 	}
 	
+	private List<MateriaPrima> getMateriaPrima() {
+		List<MateriaPrima> insumos = new ArrayList<>(1);
+		
+		MateriaPrima materiaPrima = new MateriaPrima();
+		materiaPrima.setCodigo(1);
+		materiaPrima.setDescricao("Perfil de Alumínio");
+		materiaPrima.setQuantidade(6);
+		materiaPrima.setUnidadeDeMedida(UnidadeDeMedida.TON);
+		
+		MateriaPrima materiaPrima2 = new MateriaPrima();
+		materiaPrima2.setCodigo(2);
+		materiaPrima2.setDescricao("Fibra de Carbono");
+		materiaPrima2.setQuantidade(100);
+		materiaPrima2.setUnidadeDeMedida(UnidadeDeMedida.M2);
+		
+		insumos.add(materiaPrima);
+		insumos.add(materiaPrima2);
+		
+		return insumos;
+	}
 }

@@ -2,7 +2,7 @@ package br.fsa.compras.command;
 
 public class FornecedorCommand {
 	
-	private Long id;	
+	private Long id;
 	
 	private Integer matricula;
 	private String cnpj;

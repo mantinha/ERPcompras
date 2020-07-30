@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import br.fsa.compras.model.Funcionario;
 
-@Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 
 }

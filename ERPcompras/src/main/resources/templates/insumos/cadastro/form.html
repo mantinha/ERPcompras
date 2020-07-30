@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title th:text="#{index.page.title}"></title>
+	<link th:replace="fragments/webjars :: link">
+</head>
+<style th:replace="fragments/css :: css"></style>
+<body>
+	<div class="container">
+		<h1 th:text="#{index.page.title}" align="center"></h1>
+		<div class="row">		
+			<div class="col-md-auto" th:insert="fragments/navs :: buttons"></div>
+			<div class="col">
+				<div class="card">
+				<h5 class="card-header text-white bg-success mb-3" th:text="#{RF46}"></h5>
+					<div class="card-body">
+						<form action="#" th:object="${insumo}" th:action="@{#{path_RF46}}" method="post">							
+	                		<input th:field="*{id}" type="hidden"/>
+							<div class="form-group">
+								<label for="formGroupExampleInput">Código</label>
+								<input th:field="*{codigo}" 				type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com o código">								
+								<label for="formGroupExampleInput">Descrição</label>
+								<input th:field="*{descricao}" 				type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a descrição">								
+								<div class="row">
+									<div class="col">
+										<label for="formGroupExampleInput">Quantidade</label>
+										<input th:field="*{quantidade}"		type="text" class="form-control" id="formGroupExampleInput" placeholder="Entre com a quantidade">
+									</div>
+									<div class="col">
+										<label for="formGroupExampleInput">Unidade de Medida</label>	
+										<select th:field="*{unidadeDeMedida}" class="form-control custom-select">
+											<option th:each="unidadeDeMedida : ${T(br.fsa.compras.model.UnidadeDeMedida).values()}" th:value="${unidadeDeMedida.name()}" th:text="${unidadeDeMedida.name()}" class="dropdown-item"></option>
+										</select>
+									</div>
+								</div>													
+							</div>
+							<button type="submit" class="btn btn-warning">Cadastrar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script th:replace="fragments/webjars :: script"></script>
+</body>
+</html>
